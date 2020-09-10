@@ -7,7 +7,7 @@ jQuery(document).ready(function(){
 	// Logo
 	var $logo 	= $('#logo');
 
-    if (location.href.indexOf("#") != -1) {
+    if (location.href.indexOf("#") !== -1) {
         $logo.show();
     }
 	// Show logo 
@@ -139,7 +139,6 @@ jQuery(document).ready(function(){
 
 	// Copy categories to item classes
 	$catsfilter.find('a').click(function() {
-		var currentOption = $(this).attr('data-filter');
 		$(this).parent().parent().find('a').removeClass('current');
 		$(this).addClass('current');
 	});	
@@ -210,12 +209,12 @@ jQuery(document).ready(function(){
 		   data: $(this).serialize(),
 		   success: function(msg)
 		   {
-				if(msg == 'SEND'){
-					response = '<div class="success">'+ $success +'</div>';
-				}
-				else{
-					response = '<div class="error">'+ msg +'</div>';
-				}
+			   let response;
+			   if (msg === 'SEND') {
+				   response = '<div class="success">' + $success + '</div>';
+			   } else {
+				   response = '<div class="error">' + msg + '</div>';
+			   }
 				// Hide any previous response text
 				$(".error,.success").remove();
 				// Show response message
@@ -223,30 +222,5 @@ jQuery(document).ready(function(){
 			}
 		 });
 		return false;
-	});	
-	/* ---------------------------------------------------------------------- */
-	/*	Google Maps
-	/* ---------------------------------------------------------------------- */
-	
-	// Needed variables
-	var $map 				= $('#map'),
-		$tabContactClass 	= ('tab-contact'),
-		$lat 				= '-37.81759',
-		$lon 				= '144.964557';
-
-	$map.gmap().bind('init', function(ev, map) {
-		$map.gmap('addMarker', {'position': $lat +','+ $lon  , 'bounds': true}).click(function() {
-			$map.gmap('openInfoWindow', {'content': 'Hello World!'}, this);
-		});
-		$map.gmap('option', 'zoom', 16);
 	});
-
-	// Refresh Map
-	$content.bind('easytabs:after', function(evt,tab,panel) {
-		$map.gmap('refresh'); 
-  	});
-
-      
-  
-
 });	
