@@ -1,0 +1,7 @@
+.tabs li > a > i {
+    display: none !important;
+}
+
+.tabs li > a {
+    padding-top: 56px !important;
+}
